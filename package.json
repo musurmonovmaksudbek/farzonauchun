@@ -1,0 +1,11 @@
+{
+  "name": "farzona-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Farzona uchun romantik sayt (16 bob, musiqa, Telegram xabar)",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/server.test.js"
+  },
+  "engines": { "node": ">=18" }
+}
