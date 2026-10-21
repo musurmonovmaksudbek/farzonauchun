@@ -33,7 +33,7 @@ const get = (port, p, headers = {}) => new Promise((resolve) => http.get({ port,
   const ok = (n) => console.log('  ✓', n);
 
   // 1. bo'sh xabar rad etiladi, Telegramga bormaydi
-  let r = await post(port, { name: 'Muslima', message: '   ' });
+  let r = await post(port, { name: 'Farzona', message: '   ' });
   assert.strictEqual(r.status, 400); assert.strictEqual(r.json.ok, false); assert.strictEqual(tgCalls.length, 0); ok('bo\'sh xabar rad etildi');
   // 2. uzun xabar
   r = await post(port, { message: 'a'.repeat(2001) });
@@ -42,11 +42,11 @@ const get = (port, p, headers = {}) => new Promise((resolve) => http.get({ port,
   r = await post(port, null, '{bad'); assert.strictEqual(r.status, 400); ok('buzuq JSON → 400');
   // 4. muvaffaqiyat: aniq matn
   const exact = 'Salom!\n  Seni <b>sevaman</b> & "hamisha" 💖';
-  r = await post(port, { name: 'Muslima', message: exact });
+  r = await post(port, { name: 'Farzona', message: exact });
   assert.strictEqual(r.status, 200); assert.strictEqual(r.json.ok, true);
   const c = tgCalls[0];
   assert.strictEqual(c.url, '/botTESTTOKEN123/sendMessage'); assert.strictEqual(c.body.chat_id, '777');
-  assert(c.body.text.startsWith('💌 YANGI XABAR — MUSLIMA\n\n👸 Ism: Muslima\n\n💬 Xabar:\n' + exact + '\n\n🕒 Vaqt: '));
+  assert(c.body.text.startsWith('💌 YANGI XABAR — FARZONA\n\n👸 Ism: Farzona\n\n💬 Xabar:\n' + exact + '\n\n🕒 Vaqt: '));
   assert(!c.body.parse_mode); ok('Telegramga aniq xabar yuborildi, muvaffaqiyat qaytdi');
   console.log('    namuna:\n' + c.body.text.split('\n').map((l) => '      ' + l).join('\n'));
   // 5. Telegram rad etsa — muvaffaqiyat YO'Q
